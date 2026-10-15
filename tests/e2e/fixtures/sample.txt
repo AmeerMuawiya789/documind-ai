@@ -1,0 +1,16 @@
+DocuMind AI — sample document for end-to-end tests.
+
+This is a short plain-text file used by tests/e2e/documents.spec.ts to verify
+the upload → process → ask flow without any external dependencies.
+
+Section 1: Overview
+DocuMind AI reads documents and answers questions with cited sources.
+Every answer links back to the passages it came from.
+
+Section 2: Key dates
+The beta launched on October 12, 2026. The public launch is planned for
+January 15, 2027.
+
+Section 3: Pricing
+The Pro plan costs 9 USD per month. The Business plan costs 29 USD per month.
+The Free plan costs 0 USD per month.

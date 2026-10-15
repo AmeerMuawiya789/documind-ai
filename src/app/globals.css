@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* Class-based dark mode (toggled via .dark on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+
+  /* Brand palette: deep navy type, blue/violet accents on soft neutrals */
+  --color-navy-50: #f4f6fb;
+  --color-navy-100: #e8ecf6;
+  --color-navy-200: #c9d3ea;
+  --color-navy-300: #9db0d6;
+  --color-navy-400: #6b86bd;
+  --color-navy-500: #48659f;
+  --color-navy-600: #354e82;
+  --color-navy-700: #283d68;
+  --color-navy-800: #1d2c4e;
+  --color-navy-900: #142038;
+  --color-navy-950: #0b1322;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dfe9fd;
+  --color-brand-200: #c4d5fc;
+  --color-brand-300: #9db8f9;
+  --color-brand-400: #7494f4;
+  --color-brand-500: #5474ec;
+  --color-brand-600: #3e58dc;
+  --color-brand-700: #3346bb;
+  --color-brand-800: #2f3d95;
+  --color-brand-900: #2c397a;
+
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  --shadow-card: 0 1px 2px rgb(11 19 34 / 0.05), 0 8px 24px -12px rgb(11 19 34 / 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--color-navy-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.dark body {
+  background-color: var(--color-navy-950);
+  color: var(--color-navy-100);
+}
+
+::selection {
+  background: var(--color-brand-200);
+}
+.dark ::selection {
+  background: var(--color-brand-800);
+}
+
+/* Subtle entrance animation */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.5s ease-out both;
+}
+
+.animate-rise-1 { animation-delay: 0.05s; }
+.animate-rise-2 { animation-delay: 0.12s; }
+.animate-rise-3 { animation-delay: 0.2s; }
+.animate-rise-4 { animation-delay: 0.28s; }
+
+/* Chat message entrance */
+@keyframes msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-msg-in {
+  animation: msg-in 0.25s ease-out both;
+}
+
+/* Dialog + overlay entrance */
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.animate-overlay-in {
+  animation: overlay-in 0.18s ease-out both;
+}
+.animate-dialog-in {
+  animation: dialog-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-navy-100) 25%,
+    var(--color-navy-50) 50%,
+    var(--color-navy-100) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+.dark .skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-navy-800) 25%,
+    var(--color-navy-700) 50%,
+    var(--color-navy-800) 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* Soft float for decorative elements */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-msg-in,
+  .animate-overlay-in,
+  .animate-dialog-in,
+  .animate-float-soft {
+    animation: none;
+  }
+  .skeleton-shimmer {
+    animation: none;
+  }
+}

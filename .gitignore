@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# env
+.env
+.env*.local
+!.env.example
+
+# misc
+.DS_Store
+*.log
+coverage/
+test-results/
+playwright-report/
+
+# supabase
+supabase/.branches
+supabase/.temp
